@@ -1,5 +1,5 @@
 class Endpoints{
-  static const login="v1/users/login";
+  static const login="/v1/users/login";
 
 
 }

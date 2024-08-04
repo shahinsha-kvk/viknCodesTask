@@ -5,13 +5,12 @@ import '../app_config.dart';
 
 class NetworkClient {
   static Future<http.Response?> post(
-      {required String endpoint, Object? body}) async {
+      {required String endpoint, body}) async {
     final response = await http.post(
       Uri.parse(appUrl + endpoint),
       headers: {'Content-Type': 'application/json'},
       body: body,
     );
-
     if (response.statusCode == 200) {
       return response;
     } else if (response.statusCode == 400) {

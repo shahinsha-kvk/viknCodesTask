@@ -21,6 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print("*****************" + controller.obscureisloading.toString());
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, constraints) {
@@ -142,48 +143,53 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _buildSignInButton() {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: primaryColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(70),
-        ),
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-      ),
-      onPressed: () {
-        if (_formKey.currentState?.validate() ?? false) {
-          final username = usernameController.text;
-          final password = passwordController.text;
-          controller.login(username, password);
-        }
-      },
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            'Sign in',
-            style: GoogleFonts.poppins(
-              fontWeight: FontWeight.w400,
-              fontSize: 14,
-              color: Colors.white,
-            ),
+    return Obx(() {
+      if (controller.obscureisloading.value) {
+        return CircularProgressIndicator();
+      }
+      return ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: primaryColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(70),
           ),
-          SizedBox(width: 8),
-          Icon(Icons.arrow_forward_outlined,
-              color: Colors.white, size: 24), // Replace SVG icon
-        ],
-      ),
-    );
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        ),
+        onPressed: () {
+          if (_formKey.currentState?.validate() ?? false) {
+            final username = usernameController.text;
+            final password = passwordController.text;
+            controller.login(username, password);
+          }
+        },
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Sign in',
+              style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w400,
+                fontSize: 14,
+                color: Colors.white,
+              ),
+            ),
+            SizedBox(width: 8),
+            Icon(Icons.arrow_forward_outlined,
+                color: Colors.white, size: 24), // Replace SVG icon
+          ],
+        ),
+      );
+    });
   }
 
   Widget _buildTextField(
-      TextEditingController controller,
-      String hintText,
-      String validationError,
-      FormFieldValidator<String>? validator, {
-        bool obscureText = false,
-      }) {
+    TextEditingController controller,
+    String hintText,
+    String validationError,
+    FormFieldValidator<String>? validator, {
+    bool obscureText = false,
+  }) {
     return Container(
       // margin: EdgeInsets.symmetric(vertical: 0),
       child: Row(
@@ -216,14 +222,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   border: InputBorder.none,
                   suffixIcon: obscureText
                       ? IconButton(
-                    icon: Icon(Icons.visibility,
-                        color: primaryColor, size: 20),
-                    onPressed: () {
-                      setState(() {
-                        obscureText = !obscureText;
-                      });
-                    },
-                  )
+                          icon: Icon(Icons.visibility,
+                              color: primaryColor, size: 20),
+                          onPressed: () {
+                            setState(() {
+                              obscureText = !obscureText;
+                            });
+                          },
+                        )
                       : null,
                 ),
                 style: GoogleFonts.poppins(
@@ -262,7 +268,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     usernameController,
                     'Username',
                     'Please enter your username',
-                        (value) {
+                    (value) {
                       if (value == null || value.isEmpty)
                         return 'Please enter your username';
                       if (value.length < 3)
@@ -280,7 +286,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     passwordController,
                     'Password',
                     'Please enter your password',
-                        (value) {
+                    (value) {
                       if (value == null || value.isEmpty)
                         return 'Please enter your password';
                       if (value.length < 8)

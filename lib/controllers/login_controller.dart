@@ -10,6 +10,7 @@ class LoginController extends GetxController {
 
   // Observable to manage password obscuring
   var obscurePassword = true.obs;
+  var obscureisloading = false.obs;
 
   // Function to handle login
   Future<void> login(String username, String password) async {
@@ -17,14 +18,14 @@ class LoginController extends GetxController {
       Get.snackbar('Error', 'Please enter username and password');
       return;
     }
-
+    obscureisloading.value = true;
     final response = await AuthService.login(username, password);
+    obscureisloading.value = false;
 
     if (response != null) {
       await _storage.write(key: 'token', value: response.data?.refresh);
       await _storage.write(key: 'userID', value: response.userId?.toString());
-
-      Get.offNamed('/dashboard');
+      await Get.offNamed('/dashboard');
     } else {
       Get.snackbar('Error', 'Login failed');
     }

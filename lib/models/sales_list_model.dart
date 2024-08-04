@@ -2,25 +2,33 @@ import 'dart:convert';
 
 class SaleItem {
   int id;
-  String name;
-  double price;
+  int amount;
+  int invoiceNo;
+  String customerName;
+  String status;
   // Add other fields as required
 
   SaleItem({
     required this.id,
-    required this.name,
-    required this.price,
+    required this.customerName,
+    required this.amount,
+    required this.invoiceNo,
+    required this.status,
   });
 
   factory SaleItem.fromJson(Map<String, dynamic> json) => SaleItem(
     id: json["id"],
-    name: json["name"],
-    price: json["price"],
+    customerName: json["customername"],
+    invoiceNo: json["invoiceNo"],
+    status: json["status"],
+    amount: json["amount"],
   );
 
   Map<String, dynamic> toJson() => {
     "id": id,
-    "name": name,
-    "price": price,
+    "customerName": customerName,
+    "invoiceNo": invoiceNo,
+    "status": status,
+    "amount": amount,
   };
 }
