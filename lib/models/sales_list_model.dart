@@ -6,7 +6,6 @@ class SaleItem {
   int invoiceNo;
   String customerName;
   String status;
-  // Add other fields as required
 
   SaleItem({
     required this.id,

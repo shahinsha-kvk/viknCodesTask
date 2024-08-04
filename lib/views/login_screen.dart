@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../controllers/login_controller.dart';
 import 'constants.dart';
 
+
 class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
 
@@ -14,14 +15,12 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final LoginController controller = Get.put(LoginController());
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    print("*****************" + controller.obscureisloading.toString());
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, constraints) {
@@ -144,7 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _buildSignInButton() {
     return Obx(() {
-      if (controller.obscureisloading.value) {
+      if (loginController.obscureisloading.value) {
         return CircularProgressIndicator();
       }
       return ElevatedButton(
@@ -159,7 +158,7 @@ class _LoginScreenState extends State<LoginScreen> {
           if (_formKey.currentState?.validate() ?? false) {
             final username = usernameController.text;
             final password = passwordController.text;
-            controller.login(username, password);
+            loginController.login(username, password);
           }
         },
         child: Row(

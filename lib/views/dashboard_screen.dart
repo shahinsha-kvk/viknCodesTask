@@ -38,7 +38,12 @@ class DashboardScreen extends StatelessWidget {
               try {
                 Get.toNamed('/profile');
               } catch (e) {
-                Get.snackbar('Navigation Error', 'Failed to navigate: $e');
+                Get.snackbar(
+                  'Navigation Error',
+                  'Failed to navigate: $e',
+                  snackPosition: SnackPosition.BOTTOM,
+                  backgroundColor: Colors.blue[200],
+                );
               }
             },
             child: Container(
@@ -50,7 +55,11 @@ class DashboardScreen extends StatelessWidget {
                   icon: Icon(Icons.person_outline, color: Colors.white),
                   onPressed: () {
                     Get.snackbar(
-                        'Edit', 'Edit profile functionality coming soon!');
+                      'Edit',
+                      'Edit profile functionality coming soon!',
+                      snackPosition: SnackPosition.BOTTOM,
+                      backgroundColor: Colors.blue[200],
+                    );
                   },
                 ),
               ),
@@ -69,6 +78,7 @@ class DashboardScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   _buildTopSection(),
+                  Text('helloooooooooooooo'),
                   SizedBox(height: 20),
                   _buildListTile(
                     title: 'Bookings',
@@ -164,7 +174,11 @@ class DashboardScreen extends StatelessWidget {
                       Get.toNamed('/profile');
                     } catch (e) {
                       Get.snackbar(
-                          'Navigation Error', 'Failed to navigate: $e');
+                        'Navigation Error',
+                        'Failed to navigate: $e',
+                        snackPosition: SnackPosition.BOTTOM,
+                        backgroundColor: Colors.blue[200],
+                      );
                     }
                     break;
                 }
@@ -284,7 +298,12 @@ class DashboardScreen extends StatelessWidget {
           try {
             Get.toNamed(route);
           } catch (e) {
-            Get.snackbar('Navigation Error', 'Failed to navigate: $e');
+            Get.snackbar(
+              'Navigation Error',
+              'Failed to navigate: $e',
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.blue[200],
+            );
           }
         },
       ),

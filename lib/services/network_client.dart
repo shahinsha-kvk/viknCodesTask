@@ -4,8 +4,7 @@ import 'package:http/http.dart' as http;
 import '../app_config.dart';
 
 class NetworkClient {
-  static Future<http.Response?> post(
-      {required String endpoint, body}) async {
+  static Future<http.Response?> post({required String endpoint, body}) async {
     final response = await http.post(
       Uri.parse(appUrl + endpoint),
       headers: {'Content-Type': 'application/json'},
