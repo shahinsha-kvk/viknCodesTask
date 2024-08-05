@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../controllers/sale_list_controller.dart';
-import 'constants.dart'; // Make sure to import your constants
+import 'constants.dart';
 
 class SaleListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:
-      Colors.black,
+      backgroundColor: Colors.black,
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white),
@@ -26,9 +25,8 @@ class SaleListPage extends StatelessWidget {
         backgroundColor: Colors.black,
       ),
       body: Obx(() {
-        // Debug: Print the loading status and sale list length
-        print('Is Loading: ${salesController.isLoading.value}');
-        print('Sale List Length: ${salesController.saleList.length}');
+        // print('Is Loading: ${salesController.isLoading.value}');
+        // print('Sale List Length: ${salesController.saleList.length}');
 
         if (salesController.isLoading.value) {
           return Center(child: CircularProgressIndicator());
@@ -56,10 +54,10 @@ class SaleListPage extends StatelessWidget {
                             child: TextField(
                               decoration: InputDecoration(
                                 prefixIcon:
-                                Icon(Icons.search, color: Colors.white),
-                                hintText: 'Search name',
-                                hintStyle:
-                                GoogleFonts.poppins(color: Colors.green,fontSize: 14),
+                                    Icon(Icons.search, color: Colors.white),
+                                hintText: 'Search Customer',
+                                hintStyle: GoogleFonts.poppins(
+                                    color: Colors.green, fontSize: 12),
                                 filled: true,
                                 fillColor: Colors.grey[800],
                                 border: OutlineInputBorder(
@@ -75,21 +73,20 @@ class SaleListPage extends StatelessWidget {
                           ),
                           SizedBox(width: 5),
                           SizedBox(
-                            width: 120, // Fixed width for the filter button
+                            width: 110,
                             child: ElevatedButton.icon(
                               onPressed: () {
-                                // Handle filter logic
                                 Get.toNamed('/filter');
                               },
                               icon: Icon(Icons.filter_list,
                                   color: primaryColor, size: 18),
                               label: Text(
                                 'Add filters',
-                                style: GoogleFonts.poppins(color: Colors.white),
+                                style: GoogleFonts.poppins(
+                                    color: Colors.white, fontSize: 12),
                               ),
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.grey[
-                                800], // Background color of the button
+                                backgroundColor: Colors.grey[800],
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15),
                                 ),
@@ -118,16 +115,16 @@ class SaleListPage extends StatelessWidget {
                             'Invoice No: ${item.invoiceNo}',
                             style: GoogleFonts.poppins(
                               color: Colors.white,
-                              fontSize: 12, // Add font size
+                              fontSize: 12,
                               fontWeight: FontWeight.w200,
                             ),
                           ),
                           subtitle: Text(
-                            'Name: ${item.customerName}', // Customer name as subtitle
+                            'Name: ${item.customerName}',
                             style: GoogleFonts.poppins(
                               color: Colors.grey[400],
-                              fontSize: 15, // Add font size
-                              fontWeight: FontWeight.w600, // Add font weight
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                           trailing: Column(
@@ -140,8 +137,8 @@ class SaleListPage extends StatelessWidget {
                                   color: item.status == 'Invoiced'
                                       ? Colors.blue[800]
                                       : item.status == 'Cancelled'
-                                      ? Colors.grey[500]
-                                      : Colors.red[800],
+                                          ? Colors.grey[500]
+                                          : Colors.red[800],
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
@@ -159,7 +156,7 @@ class SaleListPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(15),
                           ),
                           onTap: () {
-                            // Handle item tap if needed
+                            // Handle item tap if necessary
                           },
                         ),
                         SizedBox(height: 10),

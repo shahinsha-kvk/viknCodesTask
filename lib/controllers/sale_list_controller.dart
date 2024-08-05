@@ -12,7 +12,7 @@ class SaleListController extends GetxController {
   var isLoading = false.obs;
   var saleList = <SaleItem>[].obs; // List of SaleItem
   var filteredSaleList = <SaleItem>[].obs; // List of filtered SaleItem
-  var searchedSaleList = <SaleItem>[].obs; // List of filtered SaleItem
+  var searchedSaleList = <SaleItem>[].obs; // List of searched SaleItem
   var searchQuery = ''.obs;
 
   @override
@@ -22,9 +22,10 @@ class SaleListController extends GetxController {
   }
 
   void fetchSales() {
-    // Use the hardcoded data
+    // Using the hardcoded data
     saleList.assignAll(getSalesItem());
-    filteredSaleList.assignAll(saleList); // Initialize with all items
+    filteredSaleList.assignAll(saleList);
+    searchedSaleList.assignAll(saleList);
   }
 
   List<SaleItem> getFilteredSalesItem(String status) {
@@ -200,9 +201,5 @@ class SaleListController extends GetxController {
       isLoading(false);
     }
   }
-  //
-  // void searchItems(String query) {
-  //   searchQuery.value = query;
-  //   // Add filtering logic based on searchQuery
-  // }
+
 }

@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 
@@ -11,7 +8,6 @@ class ProfileController extends GetxController {
   var userData = {}.obs;
   final storage = FlutterSecureStorage();
   var isLoading = false.obs;
-
 
   Future<void> logout() async {
     try {

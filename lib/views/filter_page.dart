@@ -14,7 +14,7 @@ class _FilterPageState extends State<FilterPage> {
   DateTime? _fromDate;
   DateTime? _toDate;
   String _selectedStatus = 'Pending'; // Default status
-  String? _selectedCustomer;
+  // String? _selectedCustomer;
   final DateFormat _dateFormat = DateFormat('yyyy-MM-dd');
 
   final List<String> _statusOptions = ['Pending', 'Invoiced', 'Cancelled'];
@@ -297,7 +297,7 @@ class _FilterPageState extends State<FilterPage> {
                           borderRadius: BorderRadius.circular(15),
                         ),
                         onTap: () {
-                          // Handle item tap if needed
+                          // Handle item tap
                         },
                       ),
                       SizedBox(height: 10),

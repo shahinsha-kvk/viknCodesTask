@@ -25,7 +25,6 @@ class DashboardScreen extends StatelessWidget {
               ),
               child: Image.asset(
                 'assets/images/cabzing.png',
-
                 fit: BoxFit.cover,
               ),
             ),
@@ -56,8 +55,8 @@ class DashboardScreen extends StatelessWidget {
             ),
           ),
         ),
-        leadingWidth: 80, // Adjust leading width if needed
-        titleSpacing: 0, // Optional: Adjust title spacing if needed
+        leadingWidth: 80,
+        titleSpacing: 0,
       ),
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
@@ -92,19 +91,7 @@ class DashboardScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              Positioned(
-                bottom: 0,
-                left: 0,
-                right: 0,
-                child: Container(
-                  height: 100,
-                  child: Stack(
-                    children: [
-                      // Add any additional blurred circles or background elements here
-                    ],
-                  ),
-                ),
-              ),
+
             ],
           ),
         ),
@@ -115,30 +102,30 @@ class DashboardScreen extends StatelessWidget {
           primaryColor: Colors.blue[400],
         ),
         child: Obx(() => BottomNavigationBar(
-          backgroundColor: Colors.black,
-          selectedItemColor: Colors.white,
-          unselectedItemColor: Colors.grey[800],
-          currentIndex: controller.selectedIndex.value,
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.adjust_rounded),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.notifications),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline),
-              label: '',
-            ),
-          ],
-          onTap: (index) => _onBottomNavTap(index),
-        )),
+              backgroundColor: Colors.black,
+              selectedItemColor: Colors.white,
+              unselectedItemColor: Colors.grey[800],
+              currentIndex: controller.selectedIndex.value,
+              items: [
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.home),
+                  label: '',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.adjust_rounded),
+                  label: '',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.notifications),
+                  label: '',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.person_outline),
+                  label: '',
+                ),
+              ],
+              onTap: (index) => _onBottomNavTap(index),
+            )),
       ),
     );
   }
@@ -160,19 +147,20 @@ class DashboardScreen extends StatelessWidget {
     controller.changeIndex(index);
     switch (index) {
       case 0:
-      // Home
+        // Home
         break;
       case 1:
-      // Second button action
+        // Second button action
         break;
       case 2:
-      // Third button action
+        // Third button action
         break;
       case 3:
         _navigateToProfile();
         break;
     }
   }
+
   Widget _buildTopSection() {
     return Container(
       decoration: ShapeDecoration(
@@ -186,63 +174,65 @@ class DashboardScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ListTile(
-            leading: Container(
-              decoration: ShapeDecoration(
-                color: Colors.grey[800],
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-              ),
-              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 6),
-              child: Icon(Icons.stacked_line_chart_rounded, color: Colors.green[600]),
-            ),
-            title: Text(
-              "SAR",
-              style: GoogleFonts.poppins(
-                fontWeight: FontWeight.w200,
-                fontSize: 12,
-                color: textColor,
-              ),
-            ),
-            subtitle: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "5,63,188.00",
-                  style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 14,
-                    color: Colors.grey[400],
+              leading: Container(
+                decoration: ShapeDecoration(
+                  color: Colors.grey[800],
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
                   ),
                 ),
-                Text(
-                  "other info",
-                  style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w200,
-                    fontSize: 12,
-                    color: Colors.green[600],
-                  ),
+                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 6),
+                child: Icon(Icons.stacked_line_chart_rounded,
+                    color: Colors.green[600]),
+              ),
+              title: Text(
+                "SAR",
+                style: GoogleFonts.poppins(
+                  fontWeight: FontWeight.w200,
+                  fontSize: 12,
+                  color: textColor,
                 ),
-              ],
-            ),
-            trailing: Text("Revenue",style: GoogleFonts.poppins(
-              fontWeight: FontWeight.w500,
-              fontSize: 14,
-              color: textColor,
-            ),),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15),
-            ),
-            onTap: () {
-
-              }
-          ),
+              ),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "5,63,188.00",
+                    style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14,
+                      color: Colors.grey[400],
+                    ),
+                  ),
+                  Text(
+                    "other info",
+                    style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w200,
+                      fontSize: 12,
+                      color: Colors.green[600],
+                    ),
+                  ),
+                ],
+              ),
+              trailing: Text(
+                "Revenue",
+                style: GoogleFonts.poppins(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14,
+                  color: textColor,
+                ),
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15),
+              ),
+              onTap: () {}),
           SizedBox(height: 15),
           _buildDashboardTitle(),
         ],
       ),
     );
   }
+
   Widget _buildDashboardTitle() {
     return Container(
       decoration: ShapeDecoration(
@@ -287,7 +277,6 @@ class DashboardScreen extends StatelessWidget {
       ),
     );
   }
-
 
   Widget _buildListTile({
     required String title,
@@ -351,12 +340,11 @@ class DashboardScreen extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
         ),
         onTap: () {
-           {
+          {
             Get.toNamed(route);
           }
         },
       ),
     );
   }
-
 }

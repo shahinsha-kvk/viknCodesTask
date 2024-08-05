@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../controllers/login_controller.dart';
 import '../controllers/profile_controller.dart';
@@ -158,7 +157,7 @@ class ProfilePage extends StatelessWidget {
                     onPressed: profileController.logout,
                     icon: Icon(
                       Icons.logout_rounded,
-                      color: Colors.red[900],
+                      color: Colors.red[800],
                       size: 18,
                     ),
                     label: Text(
@@ -166,7 +165,7 @@ class ProfilePage extends StatelessWidget {
                       style: GoogleFonts.poppins(
                         fontWeight: FontWeight.w500,
                         fontSize: 14,
-                        color: Colors.red[900],
+                        color: Colors.red[800],
                       ),
                     ),
                   ),
@@ -226,17 +225,8 @@ class ProfilePage extends StatelessWidget {
       ),
       trailing: Icon(Icons.arrow_forward_ios, color: Colors.white, size: 17),
       onTap: () {
-        try {
-          Get.toNamed(route);
-        } catch (e) {
-          // Get.snackbar(
-          //   // 'Navigation Error',
-          //   // 'Failed to navigate: $e',
-          //   // snackPosition: SnackPosition.BOTTOM,
-          //   // backgroundColor: Colors.blue[200],
-          // );
-        }
-      },
+           // action when tap
+      }
     );
   }
 }

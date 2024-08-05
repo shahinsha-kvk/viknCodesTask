@@ -1,4 +1,3 @@
-import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../models/login_response_model.dart';
 import 'endpoints.dart';
@@ -15,7 +14,6 @@ class AuthService {
           "is_mobile": true
         }));
     if (response != null && response.statusCode == 200) {
-      print("ssssssssssssssssssssssssssssssssssssss 200200200200200200200200200200200"+response.body);
       final loginResponseModel = loginResponseModelFromJson(response.body);
       return loginResponseModel;
     } else {
