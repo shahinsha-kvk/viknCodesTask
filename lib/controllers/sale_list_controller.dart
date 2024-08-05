@@ -34,7 +34,7 @@ class SaleListController extends GetxController {
 
     for (int i = 0; i < list.length; i++) {
       if (list[i].status == status) {
-        print(list[i].status);
+        // print(list[i].status);
         templist.add(list[i]);
       }
     }
@@ -47,7 +47,7 @@ class SaleListController extends GetxController {
 
     for (int i = 0; i < list.length; i++) {
       if (list[i].customerName.toLowerCase().contains(value.toLowerCase())) {
-        print(list[i].customerName);
+        // print(list[i].customerName);
         templist.add(list[i]);
       }
     }

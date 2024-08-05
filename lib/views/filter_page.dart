@@ -73,7 +73,12 @@ class _FilterPageState extends State<FilterPage> {
                 ),
                 TextButton(
                   onPressed: () {
-                    // Add filter action logic here if needed
+                    Get.snackbar(
+                      'Filter',
+                      'Only status filtering is available right now!',
+                      snackPosition: SnackPosition.BOTTOM,
+                      backgroundColor: Colors.blue[200],
+                    );
                   },
                   child: Text(
                     'Filter',
@@ -126,7 +131,7 @@ class _FilterPageState extends State<FilterPage> {
                             filled: true,
                             fillColor: Colors.grey[800],
                             prefixIcon:
-                            Icon(Icons.calendar_month, color: primaryColor),
+                                Icon(Icons.calendar_month, color: primaryColor),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15),
                               borderSide: BorderSide.none,
@@ -156,7 +161,7 @@ class _FilterPageState extends State<FilterPage> {
                             filled: true,
                             fillColor: Colors.grey[800],
                             prefixIcon:
-                            Icon(Icons.calendar_month, color: primaryColor),
+                                Icon(Icons.calendar_month, color: primaryColor),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15),
                               borderSide: BorderSide.none,
@@ -183,7 +188,7 @@ class _FilterPageState extends State<FilterPage> {
                         onSelected: (selected) {
                           setState(() {
                             _selectedStatus =
-                            selected ? status : _selectedStatus;
+                                selected ? status : _selectedStatus;
                           });
                         },
                         selectedColor: primaryColor,
@@ -236,75 +241,75 @@ class _FilterPageState extends State<FilterPage> {
             Expanded(
               child: filteredItems.isEmpty
                   ? Center(
-                child: Text(
-                  'No results found',
-                  style: GoogleFonts.poppins(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              )
-                  : ListView.builder(
-                itemCount: filteredItems.length,
-                itemBuilder: (context, index) {
-                  final item = filteredItems[index];
-                  return Column(
-                    children: [
-                      ListTile(
-                        title: Text(
-                          'Invoice No: ${item.invoiceNo}',
-                          style: GoogleFonts.poppins(
-                            color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w200,
-                          ),
+                      child: Text(
+                        'No results found',
+                        style: GoogleFonts.poppins(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
                         ),
-                        subtitle: Text(
-                          'Name: ${item.customerName}',
-                          style: GoogleFonts.poppins(
-                            color: Colors.grey[400],
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        trailing: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Text(
-                              item.status,
-                              style: GoogleFonts.poppins(
-                                color: item.status == 'Invoiced'
-                                    ? Colors.blue[800]
-                                    : item.status == 'Cancelled'
-                                    ? Colors.grey[500]
-                                    : Colors.red[800],
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            Text(
-                              'SAR \$${item.amount.toStringAsFixed(2)}',
-                              style: GoogleFonts.poppins(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
-                        ),
-                        tileColor: Colors.grey[800],
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        onTap: () {
-                          // Handle item tap
-                        },
                       ),
-                      SizedBox(height: 10),
-                    ],
-                  );
-                },
-              ),
+                    )
+                  : ListView.builder(
+                      itemCount: filteredItems.length,
+                      itemBuilder: (context, index) {
+                        final item = filteredItems[index];
+                        return Column(
+                          children: [
+                            ListTile(
+                              title: Text(
+                                'Invoice No: ${item.invoiceNo}',
+                                style: GoogleFonts.poppins(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w200,
+                                ),
+                              ),
+                              subtitle: Text(
+                                'Name: ${item.customerName}',
+                                style: GoogleFonts.poppins(
+                                  color: Colors.grey[400],
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              trailing: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    item.status,
+                                    style: GoogleFonts.poppins(
+                                      color: item.status == 'Invoiced'
+                                          ? Colors.blue[800]
+                                          : item.status == 'Cancelled'
+                                              ? Colors.grey[500]
+                                              : Colors.red[800],
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  Text(
+                                    'SAR \$${item.amount.toStringAsFixed(2)}',
+                                    style: GoogleFonts.poppins(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              tileColor: Colors.grey[800],
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              onTap: () {
+                                // Handle item tap
+                              },
+                            ),
+                            SizedBox(height: 10),
+                          ],
+                        );
+                      },
+                    ),
             ),
           ],
         ),
