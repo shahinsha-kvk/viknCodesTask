@@ -9,28 +9,28 @@ final LoginController loginController = Get.put(LoginController());
 class LoginController extends GetxController {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
-  final FlutterSecureStorage _storage = FlutterSecureStorage();
+  final FlutterSecureStorage _storage = const FlutterSecureStorage();
   LoginResponseModel? obsecureLoginResponsemodel;
 
   var obscurePassword = true.obs;
-  var obscureisloading = false.obs;
+  var isLoading = false.obs;
 
   // Function to handle login
   Future<void> login(String username, String password) async {
     if (username.isEmpty || password.isEmpty) {
       Get.snackbar('Error', 'Please enter username and password');
-      return null;
+      return ;
     }
-    obscureisloading.value = true;
+    isLoading.value = true;
     final response = await AuthService.login(username, password);
-    obscureisloading.value = false;
+    isLoading.value = false;
 
     if (response != null && response.username!= null) {
       obsecureLoginResponsemodel  = response;
 
       await _storage.write(key: 'token', value: response.data?.refresh);
       await _storage.write(key: 'userID', value: response.userId?.toString());
-      Get.snackbar('Success',
+      Get.snackbar('Welcome',
         ' ${response.message}, welcome ${response.username}!',
         snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.blue[200],
       );

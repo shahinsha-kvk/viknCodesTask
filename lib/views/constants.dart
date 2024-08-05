@@ -1,4 +1,3 @@
-// constants.dart
 import 'package:flutter/material.dart';
 
 const Color primaryColor = Color(0xFF1976D2);
@@ -9,4 +8,3 @@ const TextStyle headerTextStyle = TextStyle(
   fontSize: 19,
   color: textColor,
 );
-// Add other styles as needed

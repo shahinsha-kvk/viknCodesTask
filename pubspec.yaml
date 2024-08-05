@@ -42,7 +42,6 @@ dev_dependencies:
   http:
   flutter_secure_storage: ^5.0.0
   google_fonts:
-  flutter_svg: ^1.0.0
   intl:
 
 
@@ -67,16 +66,10 @@ flutter:
   # To add assets to your application, add an assets section, like this:
 
   assets:
-    - assets/images/container_x2.jpg
     - assets/images/container_x2_1.png
-    - assets/images/group_x2.jpg
+    - assets/images/cabzing.png
     - assets/images/pngaaa_1.png
 
-    - assets/vectors/vector_42_x2.svg
-    - assets/vectors/vector_21_x2.svg
-    - assets/vectors/vector_46_x2.svg
-    - assets/vectors/vector_57_x2.svg
-    - assets/vectors/icon_x2.svg
 #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import '../controllers/login_controller.dart';
 import 'constants.dart';
 
-
 class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
 
@@ -143,8 +142,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _buildSignInButton() {
     return Obx(() {
-      if (loginController.obscureisloading.value) {
-        return CircularProgressIndicator();
+      if (loginController.isLoading.value) {
+        return const CircularProgressIndicator();
       }
       return ElevatedButton(
         style: ElevatedButton.styleFrom(
@@ -183,14 +182,13 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _buildTextField(
-    TextEditingController controller,
-    String hintText,
-    String validationError,
-    FormFieldValidator<String>? validator, {
-    bool obscureText = false,
-  }) {
+      TextEditingController controller,
+      String hintText,
+      String validationError,
+      FormFieldValidator<String>? validator, {
+        bool obscureText = false,
+      }) {
     return Container(
-      // margin: EdgeInsets.symmetric(vertical: 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -221,14 +219,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   border: InputBorder.none,
                   suffixIcon: obscureText
                       ? IconButton(
-                          icon: Icon(Icons.visibility,
-                              color: primaryColor, size: 20),
-                          onPressed: () {
-                            setState(() {
-                              obscureText = !obscureText;
-                            });
-                          },
-                        )
+                    icon: const Icon(Icons.visibility,
+                        color: primaryColor, size: 20),
+                    onPressed: () {
+                      loginController.togglePasswordVisibility();
+                    },
+                  )
                       : null,
                 ),
                 style: GoogleFonts.poppins(
@@ -246,63 +242,65 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _buildLoginForm() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 10.0),
-      child: Center(
-        child: Form(
-          key: _formKey,
-          child: Container(
-            decoration: BoxDecoration(
-              border: Border.all(color: Color(0xFF1C3347)),
-              borderRadius: BorderRadius.circular(11),
-              color: Colors.black,
-            ),
-            padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: _buildTextField(
-                    usernameController,
-                    'Username',
-                    'Please enter your username',
-                    (value) {
-                      if (value == null || value.isEmpty)
-                        return 'Please enter your username';
-                      if (value.length < 3)
-                        return 'Must be at least 3 characters';
-                      if (!RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(value))
-                        return 'Must contain at least one special character';
-                      return null;
-                    },
+    return Obx(() {
+      return Padding(
+        padding: const EdgeInsets.only(top: 10.0),
+        child: Center(
+          child: Form(
+            key: _formKey,
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Color(0xFF1C3347)),
+                borderRadius: BorderRadius.circular(11),
+                color: Colors.black,
+              ),
+              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: _buildTextField(
+                      usernameController,
+                      'Username',
+                      'Please enter your username',
+                          (value) {
+                        if (value == null || value.isEmpty)
+                          return 'Please enter your username';
+                        if (value.length < 3)
+                          return 'Must be at least 3 characters';
+                        if (!RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(value))
+                          return 'Must contain at least one special character';
+                        return null;
+                      },
+                    ),
                   ),
-                ),
-                Divider(color: Color(0xFF1C3347)),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: _buildTextField(
-                    passwordController,
-                    'Password',
-                    'Please enter your password',
-                    (value) {
-                      if (value == null || value.isEmpty)
-                        return 'Please enter your password';
-                      if (value.length < 8)
-                        return 'Must be at least 8 characters';
-                      if (!RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(value))
-                        return 'Must contain at least one special character';
-                      return null;
-                    },
-                    obscureText: true,
+                  Divider(color: Color(0xFF1C3347)),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: _buildTextField(
+                      passwordController,
+                      'Password',
+                      'Please enter your password',
+                          (value) {
+                        if (value == null || value.isEmpty)
+                          return 'Please enter your password';
+                        if (value.length < 8)
+                          return 'Must be at least 8 characters';
+                        if (!RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(value))
+                          return 'Must contain at least one special character';
+                        return null;
+                      },
+                      obscureText: loginController.obscurePassword.value,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 
   Widget _buildDontHaveAccount() {
