@@ -1,10 +1,9 @@
 # untitled
 
-A new Flutter project.
+Integrated the login Api for authenticating user and then saved the token. Displayed a list of items fetched from hard coded data and also implemented a search functionality with username. and a filter page is also there for filtering the sales items. Disigned a profile page showing user details and added a logout function there.
+
 
 ## Getting Started
-
-This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
 
